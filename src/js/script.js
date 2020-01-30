@@ -190,7 +190,7 @@
           }
 
           /*make constant and add to it all images for option*/
-          const optionImages = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          const optionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
           console.log('IMAGES:', optionImages);
            
           /*if option is checked ADD to all option images class equal to class 'classNames.menuProduct.imageVisible'*/
