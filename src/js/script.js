@@ -160,8 +160,41 @@
       const thisProduct = this;
       console.log('processOrder:', thisProduct);
 
+      /*read all values from form and add it to constant formData*/
       const formData = utils.serializeFormToObject(thisProduct.form);
       console.log('formData', formData);
+
+      /*make new variable 'price' with value from 'thisProduct.data.price'*/
+      let price = thisProduct.data.price;
+      console.log('price is:', price);
+      
+      /*start loop for each params elements*/
+      for(let paramId in thisProduct.data.params) {
+        const param = thisProduct.data.params[paramId];
+        console.log('param:',param);
+
+        /*start loop for each option of params*/
+        for (let optionId in param.options) {
+          const option = param.options[optionId];
+          console.log('option:', option);
+
+          /*start: if the option that is not the default is checked, 
+          the price of the product must be increased by the price of this option*/
+          if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId) && !option.deafult) {
+            price = price + param.options[optionId].price;
+          }
+          /*else, if the default option is not checked, 
+          the price of the product must be reduced by the price of this option*/
+          else if (!formData.hasOwnProperty(paramId) && !formData[paramId].includes(optionId) && option.deafult) {
+            price = price - param.options[optionId].price;
+          }
+
+        }/*end loop for each option of params*/
+
+      }/*end loop for each params elements*/
+
+      /*insert the value of the 'price' variable into thisProduct.priceElem*/
+      thisProduct.priceElem.innerHTML = price;
     }
 
   }
