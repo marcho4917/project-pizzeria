@@ -195,13 +195,13 @@
            
           /*if option is checked ADD to all option images class equal to class 'classNames.menuProduct.imageVisible'*/
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
-            for (let images in optionImages) {
+            for (let images of optionImages) {
               images.classList.add(classNames.menuProduct.imageVisible);
             }
           }
           /*else - all option images DELETE class equal to class in "classNames.menuProduct.imageVisible"*/
           else {
-            for (let images in optionImages) {
+            for (let images of optionImages) {
               images.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
