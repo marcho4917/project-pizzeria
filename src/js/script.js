@@ -180,12 +180,12 @@
 
           /*start: if the option that is not the default is checked, 
           the price of the product must be increased by the price of this option*/
-          if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId) && !option.deafult) {
+          if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId) && !option.default) {
             price = price + param.options[optionId].price;
           }
           /*else, if the default option is not checked, 
           the price of the product must be reduced by the price of this option*/
-          else if (!formData.hasOwnProperty(paramId) && !formData[paramId].includes(optionId) && option.deafult) {
+          else if (!formData.hasOwnProperty(paramId) && !formData[paramId].includes(optionId) && option.default) {
             price = price - param.options[optionId].price;
           }
 
