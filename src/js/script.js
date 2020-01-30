@@ -63,9 +63,10 @@
       thisProduct.getElements();
       thisProduct.initAccordion();
       thisProduct.initOrderForm();
+      thisProduct.initAmountWidget();
       thisProduct.processOrder();
 
-      console.log('new Product:', thisProduct);
+      //console.log('new Product:', thisProduct);
     }
 
     renderInMenu() {
@@ -93,6 +94,7 @@
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
     initAccordion() {
@@ -101,11 +103,11 @@
       /* find the clickable trigger (the element that should react to clicking) */
       const clickableTrigger = thisProduct.accordionTrigger;
       //thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      console.log(clickableTrigger);
+      //console.log(clickableTrigger);
 
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function(event) {
-        console.log('clicked');
+        //console.log('clicked');
 
         /* prevent default action for event */
         event.preventDefault();
@@ -115,7 +117,7 @@
 
         /* find all active products */
         const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log('active Products:', activeProducts);
+        //console.log('active Products:', activeProducts);
 
         /* START LOOP: for each active product */
         for (let activeProduct of activeProducts) {  
@@ -137,7 +139,7 @@
 
     initOrderForm() {
       const thisProduct = this;
-      console.log('initOrderForm:', thisProduct);
+      //console.log('initOrderForm:', thisProduct);
 
       thisProduct.form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -159,25 +161,25 @@
 
     processOrder() {
       const thisProduct = this;
-      console.log('processOrder:', thisProduct);
+      //console.log('processOrder:', thisProduct);
 
       /*read all values from form and add it to constant formData*/
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData', formData);
+      //console.log('formData', formData);
 
       /*make new variable 'price' with value from 'thisProduct.data.price'*/
       let price = thisProduct.data.price;
-      console.log('price is:', price);
+      //console.log('price is:', price);
       
       /*start loop for each params elements*/
       for(let paramId in thisProduct.data.params) {
         const param = thisProduct.data.params[paramId];
-        console.log('param:',param);
+        //console.log('param:',param);
 
         /*start loop for each option of params*/
         for (let optionId in param.options) {
           const option = param.options[optionId];
-          console.log('option:', option);
+          //console.log('option:', option);
 
           /*if checked option is NOT default than increase 'price' by the price of THIS OPTION*/
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId) && !option.default) {
@@ -191,7 +193,7 @@
 
           /*make constant and add to it all images for option*/
           const optionImages = thisProduct.imageWrapper.querySelectorAll('.' + paramId + '-' + optionId);
-          console.log('IMAGES:', optionImages);
+          //console.log('IMAGES:', optionImages);
            
           /*if option is checked ADD to all option images class equal to class 'classNames.menuProduct.imageVisible'*/
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
@@ -213,6 +215,44 @@
       thisProduct.priceElem.innerHTML = price;
     }
 
+    initAmountWidget () {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+
+  }
+
+  class AmountWidget {
+    constructor(element) {
+      const thisWidget = this;
+
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+
+      console.log('AmountWidget:', thisWidget);
+      console.log('constructor arguments:', element);
+    }
+
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+      thisWidget.input = thisWidget.element.querySelector(select.widgets.amount.input);
+      thisWidget.linkDecrease = thisWidget.element.querySelector(select.widgets.amount.linkDecrease);
+      thisWidget.linkIncrease = thisWidget.element.querySelector(select.widgets.amount.linkIncrease);
+    }
+
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      /*TODO: Add validation*/
+
+      thisWidget.value = newValue;
+      thisWidget.input.value = thisWidget.value;
+    }
   }
 
   const app = {
