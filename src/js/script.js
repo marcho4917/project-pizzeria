@@ -178,20 +178,19 @@
           const option = param.options[optionId];
           console.log('option:', option);
 
-          /*start: if the option that is not the default is checked, 
-          the price of the product must be increased by the price of this option*/
+          /*if checked option is NOT default than increase 'price' by the price of THIS OPTION*/
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId) && !option.default) {
             price = price + param.options[optionId].price;
           }
-          /*else, if the default option is not checked, 
-          the price of the product must be reduced by the price of this option*/
-          else if (!formData.hasOwnProperty(paramId) && !formData[paramId].includes(optionId) && option.default) {
+          
+          /*else, if default option is NOT checked than reduce 'price' by the price of THIS OPTION*/ 
+          else if (!(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) && option.default) {
             price = price - param.options[optionId].price;
           }
-
-        }/*end loop for each option of params*/
-
-      }/*end loop for each params elements*/
+        /*end loop for each option of params*/
+        }
+      /*end loop for each params elements*/
+      }
 
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
       thisProduct.priceElem.innerHTML = price;
