@@ -52,8 +52,8 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
-  class Product{
-    constructor(id, data){
+  class Product {
+    constructor(id, data) {
       const thisProduct = this;
 
       thisProduct.id = id;
@@ -68,7 +68,7 @@
       console.log('new Product:', thisProduct);
     }
 
-    renderInMenu(){
+    renderInMenu() {
       const thisProduct = this;
 
       /*generate HTML based on template*/
@@ -84,7 +84,7 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
-    getElements(){
+    getElements() {
       const thisProduct = this;
 
       thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
@@ -92,9 +92,10 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
 
-    initAccordion(){
+    initAccordion() {
       const thisProduct = this;
 
       /* find the clickable trigger (the element that should react to clicking) */
@@ -134,29 +135,29 @@
     }
   
 
-    initOrderForm(){
+    initOrderForm() {
       const thisProduct = this;
       console.log('initOrderForm:', thisProduct);
 
-      thisProduct.form.addEventListener('submit', function(event){
+      thisProduct.form.addEventListener('submit', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
 
-      for (let input of thisProduct.formInputs){
-        input.addEventListener('change', function(){
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function() {
           thisProduct.processOrder();
         });
       }
 
-      thisProduct.cartButton.addEventListener('click', function(event){
+      thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
       });
       
     }
 
-    processOrder(){
+    processOrder() {
       const thisProduct = this;
       console.log('processOrder:', thisProduct);
 
@@ -187,11 +188,27 @@
           else if (!(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) && option.default) {
             price = price - param.options[optionId].price;
           }
+
+          /*make constant and add to it all images for option*/
+          const optionImages = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log('IMAGES:', optionImages);
+           
+          /*if option is checked ADD to all option images class equal to class 'classNames.menuProduct.imageVisible'*/
+          if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
+            for (let images in optionImages) {
+              images.classList.add(classNames.menuProduct.imageVisible);
+            }
+          }
+          /*else - all option images DELETE class equal to class in "classNames.menuProduct.imageVisible"*/
+          else {
+            for (let images in optionImages) {
+              images.classList.remove(classNames.menuProduct.imageVisible);
+            }
+          }
         /*end loop for each option of params*/
         }
       /*end loop for each params elements*/
       }
-
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
       thisProduct.priceElem.innerHTML = price;
     }
@@ -199,22 +216,22 @@
   }
 
   const app = {
-    initMenu: function(){
+    initMenu: function() {
       const thisApp = this;
       console.log('thisApp.data:', thisApp.data);
       
-      for(let productData in thisApp.data.products){
+      for(let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
       }
     },
 
-    initData: function(){
+    initData: function() {
       const thisApp = this;
 
       thisApp.data = dataSource;
     },
 
-    init: function(){
+    init: function() {
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
