@@ -159,6 +159,13 @@
       
     }
 
+    initAmountWidget () {
+      const thisProduct = this;
+
+      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+    }
+
+
     processOrder() {
       const thisProduct = this;
       //console.log('processOrder:', thisProduct);
@@ -215,12 +222,7 @@
       thisProduct.priceElem.innerHTML = price;
     }
 
-    initAmountWidget () {
-      const thisProduct = this;
-
-      thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
-    }
-
+    
   }
 
   class AmountWidget {
@@ -229,6 +231,7 @@
 
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
 
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
@@ -252,6 +255,27 @@
 
       thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
+    }
+
+    initActions() {
+      const thisWidget = this;
+      //console.log('initAction');
+
+      thisWidget.input.addEventListener('change', function() {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+
+      thisWidget.linkDecrease.addEventListener('click', function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value - 1);
+
+      });
+
+      thisWidget.linkIncrease.addEventListener('click', function() {
+        event.preventDefault();
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+
     }
   }
 
