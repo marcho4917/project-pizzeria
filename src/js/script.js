@@ -231,15 +231,15 @@
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
       thisProduct.priceElem.innerHTML = price;
 
-      this.viewPrice();
+      this.viewPrice(price);
 
     }
 
-    viewPrice(price) {
+    viewPrice(endPrice) {
 
       const thisProduct = this;
-      let endPrice = price;
-      console.log('price is:', price);
+      //let endPrice = price;
+      //console.log('price is:', price);
       const actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
 
       const idInterval = setInterval(function() {
