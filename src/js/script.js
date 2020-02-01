@@ -237,26 +237,22 @@
 
     viewPrice(price) {
 
-      const price = endPrice;
+      const thisProduct = this;
+      let endPrice = price;
+      console.log('price is:', price);
       const actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
 
-      idInterval = setInterval(function() {
+      const idInterval = setInterval(function() {
         if(endPrice > actuallPrice) {
           endPrice++;
         } else if (endPrice < actuallPrice) {
           endPrice--;
-        } else if (endPrice == actuallPrice){
-            clearInterval(idInterval);
+        } else if (endPrice == actuallPrice) {
+          clearInterval(idInterval);
         }
       }, 500);
 
-    }
-
-    
-    
-    
-
-    } 
+    }  
   }
 
   class AmountWidget {
