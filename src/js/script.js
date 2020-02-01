@@ -42,7 +42,7 @@
 
   const settings = {
     amountWidget: {
-      defaultValue: 2,
+      defaultValue: 1,
       defaultMin: 1,
       defaultMax: 9,
     }
@@ -65,6 +65,7 @@
       thisProduct.initOrderForm();
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
+      
 
       //console.log('new Product:', thisProduct);
     }
@@ -226,11 +227,33 @@
       /*multiply price by amount*/
       price *= thisProduct.amountWidget.value;
 
+
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
       thisProduct.priceElem.innerHTML = price;
+
+      this.viewPrice(price);
+
     }
 
+    viewPrice(price) {
+
+      console.log('price is :',price);
+
+      idInterval = setInterval(changePrice, 500);
+    }
+
+    changePrice() {
+      
+    }
     
+
+
+
+    
+
+    
+
+    } 
   }
 
   class AmountWidget {
