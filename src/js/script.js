@@ -231,26 +231,29 @@
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
       thisProduct.priceElem.innerHTML = price;
 
-      this.viewPrice(price);
+      this.viewPrice();
 
     }
 
     viewPrice(price) {
 
-      console.log('price is :',price);
+      const price = endPrice;
+      const actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
 
-      idInterval = setInterval(changePrice, 500);
+      idInterval = setInterval(function() {
+        if(endPrice > actuallPrice) {
+          endPrice++;
+        } else if (endPrice < actuallPrice) {
+          endPrice--;
+        } else if (endPrice == actuallPrice){
+            clearInterval(idInterval);
+        }
+      }, 500);
+
     }
 
-    changePrice() {
-      
-    }
     
-
-
-
     
-
     
 
     } 
