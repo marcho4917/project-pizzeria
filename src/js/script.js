@@ -235,18 +235,17 @@
 
     }
 
-    viewPrice(endPrice) {
+    viewPrice(price) {
 
       const thisProduct = this;
-      //let endPrice = price;
-      //console.log('price is:', price);
-      const actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
+      let endPrice = price;
+      let actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
 
-      const idInterval = setInterval(function() {
+      const idInterval = setInterval (function() {
         if(endPrice > actuallPrice) {
-          endPrice++;
+          actuallPrice++;
         } else if (endPrice < actuallPrice) {
-          endPrice--;
+          actuallPrice--;
         } else if (endPrice == actuallPrice) {
           clearInterval(idInterval);
         }
