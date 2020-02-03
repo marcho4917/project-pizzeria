@@ -242,16 +242,26 @@
       let actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
 
       const idInterval = setInterval (function() {
+        switch(idInterval) {
+          case endPrice > actuallPrice:
+            actuallPrice++
+            break;
+          case endPrice < actuallPrice:
+            actuallPrice--
+            break;
+          case endPrice == actuallPrice:
+            break;
+        }
+    /*
         if(endPrice > actuallPrice) {
           actuallPrice++;
         } else if (endPrice < actuallPrice) {
           actuallPrice--;
         } else if (endPrice == actuallPrice) {
           clearInterval(idInterval);
-        } 
+        } */
         
         thisProduct.priceElem.innerHTML = actuallPrice;
-        console.log('PRICE:', actuallPrice);
       }, 500);
 
     }  
