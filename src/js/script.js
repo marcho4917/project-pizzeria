@@ -229,7 +229,7 @@
 
 
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
-      thisProduct.priceElem.innerHTML = price;
+      
 
       this.viewPrice(price);
 
@@ -248,7 +248,10 @@
           actuallPrice--;
         } else if (endPrice == actuallPrice) {
           clearInterval(idInterval);
-        }
+        } 
+        
+        thisProduct.priceElem.innerHTML = actuallPrice;
+        console.log('PRICE:', actuallPrice);
       }, 500);
 
     }  
