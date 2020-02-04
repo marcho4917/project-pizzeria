@@ -270,7 +270,6 @@
     }
 
     getElements(element) {
-      const thisWidget = this;
 
       this.element = element;
       this.input = this.element.querySelector(select.widgets.amount.input);
@@ -279,7 +278,6 @@
     }
 
     setValue(value) {
-      const thisWidget = this;
 
       const newValue = parseInt(value);
       
@@ -293,7 +291,6 @@
     }
 
     initActions() {
-      const thisWidget = this;
 
       function changeValue() {
         this.setValue(this.input.value);
@@ -314,7 +311,6 @@
     }
 
     announce() {
-      const thisWidget = this;
 
       const event = new Event('updated');
       this.element.dispatchEvent(event); 
