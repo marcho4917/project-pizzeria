@@ -295,26 +295,24 @@
     initActions() {
       const thisWidget = this;
 
-      function nf() {
+      function changeValue() {
         this.setValue(this.input.value);
       }
+      this.input.addEventListener('change', changeValue.bind(this));
 
-      this.input.addEventListener('change', nf.bind(this));
-
-      function nf1() {
+      function decreaseValue() {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value - 1);
+        this.setValue(this.value - 1);
       }
-      this.linkDecrease.addEventListener('click', nf1.bind(this));
+      this.linkDecrease.addEventListener('click', decreaseValue.bind(this));
         
-      function nf2() {
+      function increaseValue() {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value + 1);
+        this.setValue(this.value + 1);
       }
-
-      this.linkIncrease.addEventListener('click', nf2.bind(this));
+      this.linkIncrease.addEventListener('click', increaseValue.bind(this));
     }
-    
+
     announce() {
       const thisWidget = this;
 
