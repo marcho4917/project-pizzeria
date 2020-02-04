@@ -92,8 +92,6 @@
       thisProduct.initAmountWidget();
       thisProduct.processOrder();
       
-
-      //console.log('new Product:', thisProduct);
     }
 
     renderInMenu() {
@@ -130,11 +128,11 @@
       /* find the clickable trigger (the element that should react to clicking) */
       const clickableTrigger = thisProduct.accordionTrigger;
       //thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
-      //console.log(clickableTrigger);
+      
 
       /* START: click event listener to trigger */
       clickableTrigger.addEventListener('click', function(event) {
-        //console.log('clicked');
+        
 
         /* prevent default action for event */
         event.preventDefault();
@@ -291,8 +289,8 @@
       this.setValue(this.input.value);
       this.initActions();
 
-      console.log('AmountWidget:', thisWidget);
-      console.log('constructor arguments:', element);
+      //console.log('AmountWidget:', thisWidget);
+      //console.log('constructor arguments:', element);
     }
 
     getElements(element) {
@@ -346,7 +344,7 @@
   const app = {
     initMenu: function() {
       const thisApp = this;
-      console.log('thisApp.data:', thisApp.data);
+      //console.log('thisApp.data:', thisApp.data);
       
       for(let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
@@ -361,11 +359,11 @@
 
     init: function() {
       const thisApp = this;
-      console.log('*** App starting ***');
-      console.log('thisApp:', thisApp);
-      console.log('classNames:', classNames);
-      console.log('settings:', settings);
-      console.log('templates:', templates);
+      //console.log('*** App starting ***');
+      //console.log('thisApp:', thisApp);
+      //console.log('classNames:', classNames);
+      //console.log('settings:', settings);
+      //console.log('templates:', templates);
 
       thisApp.initData();
       thisApp.initMenu();
