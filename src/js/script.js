@@ -180,6 +180,7 @@
       thisProduct.cartButton.addEventListener('click', function(event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
       
     }
@@ -202,6 +203,8 @@
       /*read all values from form and add it to constant formData*/
       const formData = utils.serializeFormToObject(thisProduct.form);
       //console.log('formData', formData);
+
+      thisProduct.params = {};
 
       /*make new variable 'price' with value from 'thisProduct.data.price'*/
       let price = thisProduct.data.price;
@@ -233,6 +236,13 @@
            
           /*if option is checked ADD to all option images class equal to class 'classNames.menuProduct.imageVisible'*/
           if(formData.hasOwnProperty(paramId) && formData[paramId].includes(optionId)) {
+            if(!thisProduct.params[paramId]) {
+              thisProduct.params[paramId] = {
+                label: param.label,
+                options: {},
+              };
+            }
+            thisProduct.params[paramId].options[optionId] = option.label;
             for (let images of optionImages) {
               images.classList.add(classNames.menuProduct.imageVisible);
             }
@@ -249,17 +259,17 @@
       }
 
       /*multiply price by amount*/
-      price *= thisProduct.amountWidget.value;
-
+      thisProduct.priceSingle = price;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       /*insert the value of the 'price' variable into thisProduct.priceElem*/
-      
+      thisProduct.priceElem.innerHTML = thisProduct.price;
 
-      this.viewPrice(price);
-
+      //this.viewPrice(price);
+      console.log('WIDZISZ:', thisProduct.params);
     }
 
-    viewPrice(endPrice) {
+    /*viewPrice(endPrice) {
 
       const thisProduct = this;
       let actuallPrice = parseInt(thisProduct.priceElem.innerHTML);
@@ -274,10 +284,18 @@
           clearInterval(idInterval);
         }
         
-        thisProduct.priceElem.innerHTML = actuallPrice;
-      }, 500);
+      }, 500); 
       
-    }  
+    }*/
+    
+    addToCart() {
+      const thisProduct = this;
+
+      thisProduct.data.name = thisProduct.name;
+      thisProduct.amountWidget.value = thisProduct.amount;
+
+      app.cart.add(thisProduct);
+    }
   }
 
   class AmountWidget {
@@ -359,6 +377,7 @@
 
       thisCart.dom.wrapper = element;
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      thisCart.dom.productList = thisCart.dom.wrapper.querySelector(select.cart.productList);
     }
 
     initActions () {
@@ -367,6 +386,16 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function() {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       });
+    }
+
+    add(menuProduct) {
+      const thisCart = this;
+
+      const generatedHTML = templates.cartProduct(menuProduct);
+
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+
+      thisCart.dom.productList.appendChild(generatedDOM);
     }
   }
 
