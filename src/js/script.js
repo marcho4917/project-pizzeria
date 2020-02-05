@@ -266,7 +266,7 @@
       thisProduct.priceElem.innerHTML = thisProduct.price;
 
       //this.viewPrice(price);
-      console.log('WIDZISZ:', thisProduct.params);
+      //console.log('WIDZISZ:', thisProduct.params);
     }
 
     /*viewPrice(endPrice) {
@@ -396,6 +396,9 @@
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
 
       thisCart.dom.productList.appendChild(generatedDOM);
+    
+      thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
+      console.log('thisCart.products', thisCart.products);
     }
   }
 
@@ -411,9 +414,11 @@
 
       thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
 
-      getElements(element);
-
+      this.getElements(element);
+      thisCartProduct.initAmountWidget();
+      
       console.log('thisCartProduct:', thisCartProduct);
+     
     }
 
     getElements(element) {
@@ -427,6 +432,21 @@
       thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
       thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
 
+    }
+
+    initAmountWidget () {
+      const thisCartProduct = this;
+
+      thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
+
+      thisCartProduct.dom.amountWidget.addEventListener('updated', function() {
+
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
+
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+
+      });
     }
   }
 
