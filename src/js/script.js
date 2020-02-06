@@ -450,7 +450,8 @@
       const thisCart = this;
 
       const index = thisCart.products.indexOf(cartProduct);
-      thisCart.products.splice(index, 1);
+      thisCart.products.splice(index, 10);
+      console.log(thisCart.products);
       cartProduct.dom.wrapper.remove();
       thisCart.update();
     }
