@@ -116,9 +116,9 @@ const app = {
   initBooking: function() {
     const thisApp = this;
 
-    thisApp.bookingContainer = document.querySelector(select.containerOf.booking);
+    const bookingContainer = document.querySelector(select.containerOf.booking);
 
-    thisApp.booking = new Booking(thisApp.bookingContainer);
+    thisApp.booking = new Booking(bookingContainer);
   }
 };
 
