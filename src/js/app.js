@@ -1,10 +1,15 @@
+import {settings, select} from './settings.js';
+import Product from './components/Product.js';
+import Cart from './components/Cart.js';
+
+
 const app = {
   initMenu: function() {
     const thisApp = this;
     //console.log('thisApp.data:', thisApp.data);
       
     for(let productData in thisApp.data.products) {
-        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
+      new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
   },
 
@@ -46,6 +51,12 @@ const app = {
 
     const cartElem = document.querySelector(select.containerOf.cart);
     thisApp.cart = new Cart(cartElem);
+
+    thisApp.productList = document.querySelector(select.containerOf.menu);
+
+    thisApp.productList.addEventListener('add-to-cart', function(event){
+      app.cart.add(event.detail.product);
+    });
   },
 };
 
