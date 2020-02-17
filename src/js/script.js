@@ -435,7 +435,8 @@
       };
 
       for(let product of thisCart.products) {
-        payload.products.getData();
+        let orderProduct = product.getData();
+        payload.products.push(orderProduct);
       }
 
       const options = {
@@ -580,6 +581,13 @@
         event.preventDefault();
         thisCartProduct.remove();
       });
+    }
+
+    getData() {
+      const thisCartProduct = this;
+
+      const productData = {id: thisCartProduct.id, amount: thisCartProduct.amount, price: thisCartProduct.price, priceSingle: thisCartProduct.priceSingle, params: thisCartProduct.params}
+      return productData;
     }
 
   }
