@@ -12,7 +12,6 @@ const app = {
 
     const idFromHash = window.location.hash.replace('#/', '');
     
-
     let pageMatchingHash = thisApp.pages[0].id;
 
     for (let page of thisApp.pages) {
@@ -40,7 +39,6 @@ const app = {
       });
     }
   },
-
   activatePage: function(pageId) {
     const thisApp = this;
 
@@ -56,7 +54,6 @@ const app = {
       );
     }
   },
-
   initMenu: function() {
     const thisApp = this;
     //console.log('thisApp.data:', thisApp.data);
@@ -65,7 +62,6 @@ const app = {
       new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
     }
   },
-
   initData: function() {
     const thisApp = this;
 
@@ -86,7 +82,6 @@ const app = {
       });
     //console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
-
   init: function() {
     const thisApp = this;
     //console.log('*** App starting ***');
@@ -99,7 +94,6 @@ const app = {
     thisApp.initCart();
     thisApp.initBooking();
   },
-
   initCart: function() {
     const thisApp = this;
 
@@ -112,7 +106,6 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
-
   initBooking: function() {
     const thisApp = this;
 
@@ -121,6 +114,5 @@ const app = {
     thisApp.booking = new Booking(bookingContainer);
   }
 };
-
 app.init();
 

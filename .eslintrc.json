@@ -30,6 +30,7 @@
         ]
     },
     "globals": {
-        "flatpickr": false
+        "flatpickr": false,
+        "rangeSlider": false
     }
 }
