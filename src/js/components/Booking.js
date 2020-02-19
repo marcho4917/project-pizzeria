@@ -11,6 +11,7 @@ class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.chooseTable();
   }
 
   render(bookingContainer) {
@@ -180,8 +181,21 @@ class Booking {
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+
     }
   }
+   
+  chooseTable() {
+    const thisBooking = this;
+
+    for(let table of thisBooking.dom.tables) {
+      table.addEventListener('click', function(){
+        table.classList.toggle('selected');
+        thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      });
+    }
+  }
+
 }
 
 export default Booking;
