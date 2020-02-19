@@ -11,7 +11,7 @@ class Booking {
     thisBooking.render(bookingContainer);
     thisBooking.initWidgets();
     thisBooking.getData();
-    thisBooking.chooseTable();
+    thisBooking.initActions();
   }
 
   render(bookingContainer) {
@@ -185,13 +185,21 @@ class Booking {
     }
   }
    
-  chooseTable() {
+  chooseTable(clickedTable) {
     const thisBooking = this;
 
     for(let table of thisBooking.dom.tables) {
-      table.addEventListener('click', function(){
-        table.classList.toggle('selected');
-        thisBooking.tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      table.classList.remove(classNames.booking.tableBooked);
+    }
+    clickedTable.classList.add(classNames.booking.tableBooked);
+  }
+
+  initActions() {
+    const thisBooking  = this;
+
+    for(let table of thisBooking.dom.tables){
+      table.addEventListener('click', function() {
+        thisBooking.chooseTable();
       });
     }
   }
