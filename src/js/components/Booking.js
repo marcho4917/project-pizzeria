@@ -188,16 +188,16 @@ class Booking {
   chooseTable(clickedTable) {
     const thisBooking = this;
 
+    const entryClass = clickedTable.classList.contains(classNames.booking.tableSelected);
+    //console.log('entryClass', entryClass);
+
     for(let table of thisBooking.dom.tables) {
       table.classList.remove(classNames.booking.tableSelected);
     }
-    if (clickedTable.classList.contains(classNames.booking.tableBooked)
-        || clickedTable.classList.contains(classNames.booking.tableSelected)) {
-      console.log('weszlo');
+    if (clickedTable.classList.contains(classNames.booking.tableBooked) || entryClass) {
       clickedTable.classList.remove(classNames.booking.tableSelected);
     } else {
       clickedTable.classList.add(classNames.booking.tableSelected);
-      console.log('clicked TABLE', clickedTable);
     }
   }
 
