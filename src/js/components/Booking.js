@@ -189,9 +189,16 @@ class Booking {
     const thisBooking = this;
 
     for(let table of thisBooking.dom.tables) {
-      table.classList.remove(classNames.booking.tableBooked);
+      table.classList.remove(classNames.booking.tableSelected);
     }
-    clickedTable.classList.add(classNames.booking.tableBooked);
+    if (clickedTable.classList.contains(classNames.booking.tableBooked)
+        || clickedTable.classList.contains(classNames.booking.tableSelected)) {
+      console.log('weszlo');
+      clickedTable.classList.remove(classNames.booking.tableSelected);
+    } else {
+      clickedTable.classList.add(classNames.booking.tableSelected);
+      console.log('clicked TABLE', clickedTable);
+    }
   }
 
   initActions() {
@@ -199,7 +206,8 @@ class Booking {
 
     for(let table of thisBooking.dom.tables){
       table.addEventListener('click', function() {
-        thisBooking.chooseTable();
+        const clickedTable = this;
+        thisBooking.chooseTable(clickedTable);
       });
     }
   }
