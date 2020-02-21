@@ -30,6 +30,12 @@ class Booking {
     bookingContainer.appendChild(thisBooking.dom.wrapper);
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+
+    thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
+    thisBooking.dom.email = thisBooking.dom.wrapper.querySelector(select.booking.email);
+
+    thisBooking.dom.submit = thisBooking.dom.wrapper.querySelector(select.booking.bookTable);
+
   }
 
   initWidgets () {
@@ -42,7 +48,14 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
+      thisBooking.clearTable();
     });
+
+    thisBooking.dom.submit.addEventListener('click', function () {
+      event.preventDefault();
+      thisBooking.sendBooking();
+    });
+  
   }
 
   getData() {
@@ -191,9 +204,8 @@ class Booking {
     const entryClass = clickedTable.classList.contains(classNames.booking.tableSelected);
     //console.log('entryClass', entryClass);
 
-    for(let table of thisBooking.dom.tables) {
-      table.classList.remove(classNames.booking.tableSelected);
-    }
+    thisBooking.clearTable();
+
     if (clickedTable.classList.contains(classNames.booking.tableBooked) || entryClass) {
       clickedTable.classList.remove(classNames.booking.tableSelected);
     } else {
@@ -210,6 +222,45 @@ class Booking {
         thisBooking.chooseTable(clickedTable);
       });
     }
+  }
+
+  clearTable() {
+    const thisBooking = this;
+
+    for(let table of thisBooking.dom.tables) {
+      table.classList.remove(classNames.booking.tableSelected);
+    }
+  }
+
+  sendBooking() {
+    const thisBooking = this;
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const payload = {
+      date: thisBooking.datePicker,
+      hour: thisBooking.hourPicker,
+      duration: thisBooking.hoursAmount,
+      ppl: thisBooking.peopleAmount,
+      table: thisBooking.clickedTable,
+      phone: thisBooking.dom.phone.value,
+      email: thisBooking.dom.email.value,
+    };console.log('payload',payload);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    };
+
+    fetch(url, options)
+      .then(function(response) {
+        return response.json();
+      }).then(function(parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+      });
   }
 
 }
