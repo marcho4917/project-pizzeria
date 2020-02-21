@@ -238,11 +238,11 @@ class Booking {
     const url = settings.db.url + '/' + settings.db.booking;
 
     const payload = {
-      date: thisBooking.datePicker,
-      hour: thisBooking.hourPicker,
-      duration: thisBooking.hoursAmount,
-      ppl: thisBooking.peopleAmount,
-      table: thisBooking.clickedTable,
+      date: thisBooking.datePicker.correctValue,
+      hour: thisBooking.hourPicker.correctValue,
+      duration: thisBooking.hoursAmount.correctValue,
+      ppl: thisBooking.peopleAmount.correctValue,
+      table: ,
       phone: thisBooking.dom.phone.value,
       email: thisBooking.dom.email.value,
     };console.log('payload',payload);
