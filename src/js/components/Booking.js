@@ -210,6 +210,7 @@ class Booking {
       clickedTable.classList.remove(classNames.booking.tableSelected);
     } else {
       clickedTable.classList.add(classNames.booking.tableSelected);
+      thisBooking.tableNumber = clickedTable.getAttribute(settings.booking.tableIdAttribute);
     }
   }
 
@@ -242,7 +243,7 @@ class Booking {
       hour: thisBooking.hourPicker.correctValue,
       duration: thisBooking.hoursAmount.correctValue,
       ppl: thisBooking.peopleAmount.correctValue,
-      table: ,
+      table: thisBooking.tableNumber,
       phone: thisBooking.dom.phone.value,
       email: thisBooking.dom.email.value,
     };console.log('payload',payload);
