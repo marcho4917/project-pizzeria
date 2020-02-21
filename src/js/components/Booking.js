@@ -152,14 +152,10 @@ class Booking {
 
     for(let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5){
       //console.log('loop', hourBlock);
-
-      
       if(typeof thisBooking.booked[date][hourBlock] =='undefined') {
         thisBooking.booked[date][hourBlock] = []; 
       }
-
       thisBooking.booked[date][hourBlock].push(table);
-
     }
   }
 
@@ -241,8 +237,8 @@ class Booking {
     const payload = {
       date: thisBooking.datePicker.correctValue,
       hour: thisBooking.hourPicker.correctValue,
-      duration: thisBooking.hoursAmount.correctValue,
-      ppl: thisBooking.peopleAmount.correctValue,
+      duration: thisBooking.hoursAmount.value,
+      ppl: thisBooking.peopleAmount.value,
       table: thisBooking.tableNumber,
       phone: thisBooking.dom.phone.value,
       email: thisBooking.dom.email.value,
@@ -261,7 +257,12 @@ class Booking {
         return response.json();
       }).then(function(parsedResponse) {
         console.log('parsedResponse', parsedResponse);
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.updateDOM();
       });
+    
+  
+    
   }
 
 }
