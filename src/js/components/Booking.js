@@ -240,7 +240,7 @@ class Booking {
       hour: thisBooking.hourPicker.correctValue,
       duration: thisBooking.hoursAmount.value,
       ppl: thisBooking.peopleAmount.value,
-      table: thisBooking.tableNumber,
+      table: parseInt(thisBooking.tableNumber),
       phone: thisBooking.dom.phone.value,
       email: thisBooking.dom.email.value,
     };console.log('payload',payload);
@@ -262,9 +262,6 @@ class Booking {
         thisBooking.updateDOM();
         thisBooking.clearTable();
       });
-    
-  
-    
   }
 
 }
