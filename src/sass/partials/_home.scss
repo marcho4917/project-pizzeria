@@ -1,0 +1,158 @@
+.home-wrapper {
+  margin: 42px auto;
+  padding: 72px 48px;
+  background: #fff;
+  border-bottom: 1px solid #e6e6e6;
+  border-radius: $radius;
+}
+
+.home-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.home-buttons {
+  flex-basis: 49.5%;
+  position: relative;
+  overflow: hidden;
+  font-weight: 100;
+  height: 118px;
+  width: auto;
+  border-radius: $radius;
+  font-weight: $font-bold;
+  font-family: $font-header;
+  font-size: 18px;
+  color: $color-light;
+  cursor: pointer;
+
+  color: $color-light;
+
+  a {
+    text-decoration: none;
+    font-size: 24px;
+    color: $color-light;
+    top: 33%;
+    right: 26%;
+    position: absolute;
+    transition: 0.5s;
+    text-align: center;
+  }
+
+}
+
+.home-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.open-hours {
+  position: relative;
+  flex-basis: 100%;
+  margin: 8px 0;
+  border-radius: $radius;
+  background-color: $color-main;
+  color: $color-light;
+  text-align: center;
+
+  h1 {
+    margin: 24px 0 0px 0;
+    font-size: 28px;
+    font-family: $font-header;
+  }
+
+  p {
+    margin: 0 0 24px 0;
+  }
+}
+
+.home-carousel {
+
+}
+
+.carousel-img img {
+  flex-basis: 30%;
+  border-radius: $radius;
+  width: 195px;
+  height: 195px;
+  object-fit: cover;
+  margin-top: 95px;
+}
+
+.dots-carousel {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: 11px;
+  margin-top: 11px;
+  margin-left: 6px;
+  letter-spacing: 6px;
+  color: lighten($color-dark, 10%);
+}
+
+.home-gallery  {
+  margin-top: 77px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.gallery-img {
+  flex-basis: 32%;
+  height: 195px;
+  width: 195px;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: $radius;
+  }
+}
+
+.image-overlay {
+  position: absolute;
+  transition: all 0.3s ease;
+  opacity: 0;
+  background-color: black;
+  transform: translateY(-103%);
+  height: 195px;
+  width: 195px;
+  border-radius: $radius;
+  i {
+    position: relative;
+    cursor: pointer;
+    top: 45%;
+    margin-left: 5px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: lighten($color-dark, 10%);
+  }
+}
+
+.image-overlay:hover {
+  opacity: 0.5;
+}
+
+.image-overlay > .fa-heart:hover {
+  color: red;
+}
+
+.image-overlay > .fa-share-alt:hover {
+  color: $color-warning;
+  opacity: 1;
+}
+.footer {
+  margin-top: 13px;
+  a {
+    color: $color-main;
+  }
+}
