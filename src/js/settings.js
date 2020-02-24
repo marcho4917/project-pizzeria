@@ -68,7 +68,7 @@ export const select = {
     email: '.booking-form [name="address"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, .home-buttons a',
   },
 };
 
