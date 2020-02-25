@@ -48,6 +48,13 @@ class Booking {
 
     thisBooking.dom.wrapper.addEventListener('updated', function() {
       thisBooking.updateDOM();
+    }); 
+
+    thisBooking.dom.datePicker.addEventListener('updated', function() {
+      thisBooking.clearTable();
+    });
+    
+    thisBooking.dom.hourPicker.addEventListener('updated', function() {
       thisBooking.clearTable();
     });
 
