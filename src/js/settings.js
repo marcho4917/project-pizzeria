@@ -63,9 +63,12 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    bookTable: '.booking-form [type="submit"]',
+    phone: '.booking-form [name="phone"]',
+    email: '.booking-form [name="address"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, .home-buttons a',
   },
 };
 
@@ -80,6 +83,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    tableSelected: 'active',
   },
   nav: {
     active: 'active',
@@ -109,7 +113,7 @@ export const settings = {
     tableIdAttribute: 'data-table',
   },
   db: {
-    url: '//localhost:3131',
+    url: '//' + window.location.hostname + (window.location.hostname =='localhost' ? ':3131' : ''),
     product: 'product',
     order: 'order',
     booking: 'booking',
