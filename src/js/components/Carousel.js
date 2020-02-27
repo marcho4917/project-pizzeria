@@ -1,4 +1,37 @@
-function Carousel() {  // eslint-disable-next-line no-unused-vars
+let slideIndex = 0;
+function showSlides() {
+  let i;
+  
+  let slides = document.querySelectorAll('.slide');
+  let dots = document.querySelectorAll('.carousel-dot');
+  //console.log(slides);
+  //console.log(dots);
+  for (i = 0; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+  }
+  slideIndex++;
+  //console.log(slideIndex);
+  if (slideIndex > slides.length) {
+    slideIndex = 1;
+  }
+  //console.log(slideIndex);
+  for (i = 0; i < dots.length; i++) {
+    dots[i].classList.remove('active');
+  }
+  slides[slideIndex - 1].classList.add('active');
+  dots[slideIndex - 1].classList.add('active');
+  
+  setTimeout(showSlides, 3000);
+}
+
+showSlides();
+
+
+
+
+
+
+/*function Carousel() {  // eslint-disable-next-line no-unused-vars
   const opinion = [];
   
   opinion[0] = {
@@ -49,4 +82,4 @@ function Carousel() {  // eslint-disable-next-line no-unused-vars
   }, 3000);
 }
 
-Carousel();
+Carousel();*/
