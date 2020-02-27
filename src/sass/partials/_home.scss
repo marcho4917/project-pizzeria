@@ -95,6 +95,7 @@
 }
 
 .home-carousel {
+  position: relative;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -115,10 +116,10 @@
 
 .carousel-opinion {
   text-align: left;
-  border-radius: radius;
   width: 380px;
   height: 192px;
   margin-left: 29px;
+  overflow: hidden;
 }
 
 .opinion-title {
@@ -131,16 +132,27 @@
 
 .carousel-container {
   margin: 102px 39px;
+  //background: lightgreen;
 }
 
-.dots-carousel {
-  flex-basis: 100%;
-  text-align: center;
-  font-size: 11px;
-  margin-top: 11px;
-  margin-left: 6px;
-  letter-spacing: 6px;
-  color: lighten($color-dark, 10%);
+.slid {
+  position: absolute;
+  background: white;
+  width: 300px;
+}
+.carousel-dot {
+  border-radius: 50%;
+  border: 0;
+  width: 10px;
+  height: 10px;
+  background-color: rgba(0,0,0, .3);
+  justify-content: center;
+  margin: 0 6px;
+  cursor: pointer;
+}
+
+.carousel-dot.active {
+  background-color: rgba(0,0,0, .75);
 }
 
 .home-gallery  {
