@@ -1,4 +1,4 @@
-function Carousel() {
+function Carousel() {  // eslint-disable-next-line no-unused-vars
   const opinion = [];
   
   opinion[0] = {
