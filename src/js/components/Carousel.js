@@ -1,13 +1,11 @@
 let slideIndex = 0;
 
 function showSlides() {
-
-  let i;
-  let slides = document.querySelectorAll('.slide');
-  let dots = document.querySelectorAll('.carousel-dot');
+  const slides = document.querySelectorAll('.slide');
+  const dots = document.querySelectorAll('.carousel-dot');
   //console.log(slides);
   //console.log(dots);
-  for (i = 0; i < slides.length; i++) {
+  for (let i = 0; i < slides.length; i++) {
     slides[i].classList.remove('active');
   }
   slideIndex++;
@@ -16,7 +14,7 @@ function showSlides() {
     slideIndex = 1;
   }
   //console.log(slideIndex);
-  for (i = 0; i < dots.length; i++) {
+  for (let i = 0; i < dots.length; i++) {
     dots[i].classList.remove('active');
   }
   slides[slideIndex - 1].classList.add('active');
