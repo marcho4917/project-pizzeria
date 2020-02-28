@@ -66,7 +66,7 @@
 
 .home-image img {
   width: 100%;
-  height: 100%;
+  height: 118px;
   object-fit: cover;
 }
 
@@ -95,16 +95,17 @@
 }
 
 .home-carousel {
+  margin: 0 -35px;
+  flex-direction: row;
   position: relative;
   display: flex;
-  flex-direction: row;
   width: 100%;
   height: 100%;
 }
 
 .carousel-img {
-  height: 192px;
-  width: 192px;
+  height: 195px;
+  width: 195px;
 
   img {
     object-fit: cover;
@@ -153,80 +154,76 @@
   border: 0;
   width: 10px;
   height: 10px;
-  background-color: rgba(0,0,0, .3);
+  background-color: rgba(0, 0, 0, 0.3);
   justify-content: center;
   margin: 0 6px;
   cursor: pointer;
 }
 
 .carousel-dot.active {
-  background-color: rgba(0,0,0, .75);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
-.home-gallery  {
-  margin-top: 77px;
-  text-align: center;
+.home-gallery {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-content: space-between;
 }
 
 .gallery-img {
-  flex-basis: 32%;
-  height: 195px;
-  width: 195px;
-  margin-bottom: 10px;
+  flex: 0 0 31%;
+  margin: 6px;
+  object-fit: cover;
   position: relative;
-  display: inline-block;
+  width: 195px;
+  height: 195px;
 
   img {
-    height: 100%;
-    width: 100%;
     object-fit: cover;
+    width: 100%;
+    height: 100%;
     border-radius: $radius;
   }
 }
 
 .image-overlay {
   position: absolute;
-  transition: all 0.3s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.4);
   opacity: 0;
-  background-color: black;
-  transform: translateY(-103%);
-  height: 195px;
-  width: 195px;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
   border-radius: $radius;
 
   i {
-    position: relative;
-    cursor: pointer;
-    top: 45%;
-    margin-left: 5px;
-    display: inline-block;
-    justify-content: center;
-    align-items: center;
     font-size: 25px;
-    color: white;
+    margin: 5px;
+    cursor: pointer;
   }
 }
 
-.image-overlay:hover {
-  opacity: 0.5;
-}
-
-.image-overlay > .fa-heart:hover {
-  color: $color-main;
-}
-
-.image-overlay > .fa-share-alt:hover {
-  color: $color-main;
+.gallery-img:hover .image-overlay {
   opacity: 1;
+}
+
+.gallery-img i:hover {
+  color: $color-main;
+  cursor: pointer;
+  opacity: 1;
+  font-size: 30px;
 }
 
 .footer {
   margin-top: 13px;
-  
+
   a {
     color: $color-main;
   }

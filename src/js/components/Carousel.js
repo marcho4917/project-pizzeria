@@ -1,7 +1,8 @@
 let slideIndex = 0;
+
 function showSlides() {
+
   let i;
-  
   let slides = document.querySelectorAll('.slide');
   let dots = document.querySelectorAll('.carousel-dot');
   //console.log(slides);
