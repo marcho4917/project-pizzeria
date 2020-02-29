@@ -115,8 +115,10 @@
 }
 
 .carousel-opinion {
+  position: relative;
   text-align: left;
   margin-left: 29px;
+  width: 100%;
 }
 
 .opinion-title {
@@ -135,6 +137,8 @@
   position: absolute;
   background: white;
   opacity: 0;
+  left: 0;
+  right: 0;
 }
 
 .slide.active {
