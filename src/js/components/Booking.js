@@ -197,9 +197,7 @@ class Booking {
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
-
     }
-  
   }
    
   chooseTable(clickedTable) {

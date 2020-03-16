@@ -87,6 +87,20 @@
   }
 }
 
+.rangeColors {
+  position: relative;
+  display: flex;
+}
+
+.rangeColors > div {
+  display: flex;
+  width: 100%;
+  height: 12px;
+  background-color: yellow;
+  border-right: solid 0.5px black;
+}
+
+
 .flatpickr-day {
   &.disabled {
     color: lighten($color-dark, 60%);
