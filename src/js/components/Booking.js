@@ -278,21 +278,21 @@ class Booking {
     const bookedHours = thisBooking.booked[thisBooking.date];
     //console.log('Zarezerwowane godziny:',bookedHours);
 
-    const bookedTableArray = [];
+    //const bookedTableArray = [];
     //console.log('Ilosc zarezerwowanych stolikow:', bookedTableArray);
-
+    let div = '';
     for(let i = 12; i < 24; i += 0.5) {
       if (!bookedHours[i]) {
-        bookedTableArray.push(0);
+        div += '<div class="' + thisBooking.getColor(0) + '"></div>';
       } else {
-        bookedTableArray.push(bookedHours[i].length);
+        div += '<div class="' + thisBooking.getColor(bookedHours[i].length) + '"></div>';
       }
     }
 
-    const rangeColors = document.querySelector('.rangeColors');
-    let div = '';
+    const rangeColors = document.querySelector('.range-colors');
+    
 
-    for (let book of bookedTableArray) {
+    /*for (let book of bookedTableArray) {
       if(book == 3) {
         div += '<div class="red"></div>';
       } else if (book == 2) {
@@ -300,9 +300,18 @@ class Booking {
       }  else {
         div += '<div class="green"></div>';
       } 
-    }
+    } */
 
     rangeColors.innerHTML = div;
+  }
+
+  getColor(number) {
+    if(number == 3) {
+      return 'red';
+    } else if (number == 2) {
+      return 'orange';
+    } else { 
+      return 'green'; }
   }
 }
 
