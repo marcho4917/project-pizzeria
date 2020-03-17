@@ -52,6 +52,8 @@ class Booking {
 
     thisBooking.dom.datePicker.addEventListener('updated', function() {
       thisBooking.clearTable();
+      thisBooking.colorRangeSlider();
+      //console.log("FUNCKJA KOLOROWANIA WYWOŁANA!");
     });
     
     thisBooking.dom.hourPicker.addEventListener('updated', function() {
@@ -198,6 +200,7 @@ class Booking {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+    thisBooking.colorRangeSlider();
   }
    
   chooseTable(clickedTable) {
@@ -269,6 +272,38 @@ class Booking {
       });
   }
 
+  colorRangeSlider() {
+    const thisBooking = this;
+
+    const bookedHours = thisBooking.booked[thisBooking.date];
+    //console.log('Zarezerwowane godziny:',bookedHours);
+
+    const bookedTableArray = [];
+    //console.log('Ilosc zarezerwowanych stolikow:', bookedTableArray);
+
+    for(let i = 12; i < 24; i += 0.5) {
+      if (!bookedHours[i]) {
+        bookedTableArray.push(0);
+      } else {
+        bookedTableArray.push(bookedHours[i].length);
+      }
+    }
+
+    const rangeColors = document.querySelector('.rangeColors');
+    let div = '';
+
+    for (let book of bookedTableArray) {
+      if(book == 3) {
+        div += '<div class="red"></div>';
+      } else if (book == 2) {
+        div += '<div class="orange"></div>';
+      }  else {
+        div += '<div class="green"></div>';
+      } 
+    }
+
+    rangeColors.innerHTML = div;
+  }
 }
 
 export default Booking;

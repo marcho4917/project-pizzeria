@@ -57,7 +57,7 @@
 
 .rangeSlider {
   top: $base-size;
-  background: lighten($color-dark, 70%);
+  background: transparent;
   box-shadow: none;
   height: $base-size;
 
@@ -80,7 +80,7 @@
   }
 
   &__fill {
-    background: $color-success;
+    //background: $color-success;
     transition-timing-function: cubic-bezier(0, 1, 0, 1);
     transition: width 100ms;
     box-shadow: none;
@@ -88,18 +88,36 @@
 }
 
 .rangeColors {
-  position: relative;
   display: flex;
+}
+
+.rangeColors div:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.rangeColors div:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .rangeColors > div {
   display: flex;
-  width: 100%;
+  flex-basis: calc(100% / 24);
   height: 12px;
-  background-color: yellow;
-  border-right: solid 0.5px black;
 }
 
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
 
 .flatpickr-day {
   &.disabled {
@@ -216,7 +234,6 @@
         background: $color-danger;
         opacity: 0.4;
       }
-
     }
   }
 
