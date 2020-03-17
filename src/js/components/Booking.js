@@ -120,6 +120,7 @@ class Booking {
         //console.log(eventsCurrent);
         //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
+        //thisBooking.colorRangeSlider();
       });
   }
 
@@ -306,12 +307,12 @@ class Booking {
   }
 
   getColor(number) {
-    if(number == 3) {
+    if(number >= 3) {
       return 'red';
     } else if (number == 2) {
       return 'orange';
     } else { 
-      return 'green'; }
+      return 'green'; }                                                                            
   }
 }
 
