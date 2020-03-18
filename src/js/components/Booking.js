@@ -205,7 +205,6 @@ class Booking {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
-    //thisBooking.colorRangeSlider();
   }
    
   chooseTable(clickedTable) {
@@ -274,6 +273,7 @@ class Booking {
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
         thisBooking.updateDOM();
         thisBooking.clearTable();
+        thisBooking.colorRangeSlider();
       });
   }
 
@@ -281,10 +281,7 @@ class Booking {
     const thisBooking = this;
 
     const bookedHours = thisBooking.booked[thisBooking.date];
-    //console.log('Zarezerwowane godziny:',bookedHours);
 
-    //const bookedTableArray = [];
-    //console.log('Ilosc zarezerwowanych stolikow:', bookedTableArray);
     let div = '';
     for(let i = 12; i < 24; i += 0.5) {
       if (!bookedHours[i]) {
@@ -295,18 +292,6 @@ class Booking {
     }
 
     const rangeColors = document.querySelector('.range-colors');
-    
-
-    /*for (let book of bookedTableArray) {
-      if(book == 3) {
-        div += '<div class="red"></div>';
-      } else if (book == 2) {
-        div += '<div class="orange"></div>';
-      }  else {
-        div += '<div class="green"></div>';
-      } 
-    } */
-
     rangeColors.innerHTML = div;
   }
 
