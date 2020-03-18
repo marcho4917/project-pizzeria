@@ -52,8 +52,8 @@ class Booking {
 
     thisBooking.dom.datePicker.addEventListener('updated', function() {
       thisBooking.clearTable();
+      thisBooking.date = thisBooking.datePicker.value;
       thisBooking.colorRangeSlider();
-      //console.log("FUNCKJA KOLOROWANIA WYWOŁANA!");
     });
     
     thisBooking.dom.hourPicker.addEventListener('updated', function() {
@@ -120,8 +120,9 @@ class Booking {
         //console.log(eventsCurrent);
         //console.log(eventsRepeat);
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
-        //thisBooking.colorRangeSlider();
+        thisBooking.colorRangeSlider();
       });
+      
   }
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
@@ -164,9 +165,12 @@ class Booking {
       //console.log('loop', hourBlock);
       if(typeof thisBooking.booked[date][hourBlock] =='undefined') {
         thisBooking.booked[date][hourBlock] = []; 
+      } 
+      if (thisBooking.booked[date][hourBlock].indexOf(table) == -1) {
+        thisBooking.booked[date][hourBlock].push(table);
       }
-      thisBooking.booked[date][hourBlock].push(table);
     }
+    
   }
 
   updateDOM() {
@@ -201,7 +205,7 @@ class Booking {
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
-    thisBooking.colorRangeSlider();
+    //thisBooking.colorRangeSlider();
   }
    
   chooseTable(clickedTable) {
